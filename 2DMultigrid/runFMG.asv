@@ -1,0 +1,33 @@
+function [pv] = runFMG(ax,bx,ay,by,nxfine,nyfine,ncycles,nu1,nu2,f)
+%% Author: David Appelhans 
+%% solves the finite difference discretization of square 2-D Poisson.
+global ngrids
+% Jacobi weighting:
+w = 4/5;
+
+%initialize a cell to hold the objects on different grids
+pA = cell(ngrids,1); 
+pf = cell(ngrids,1);
+pv = cell(ngrids,1);
+
+%% Construct the initial guess and the RHS f:
+
+% Define arrays of grid parameters
+i = 0:ngrids-1;
+nx = (nxfine+1)./(2.^i)-1;
+ny = (nyfine+1)./(2.^i)-1;
+dx = (bx-ax)./(nx+1);
+dy = (by-ay)./(ny+1);
+
+% Build the matrices and RHS on each level:
+for i=1:ngrids
+    [pA{i}] = BuildLaplacian2D(nx(i),ny(i),dx(i),dy(i));
+    [pf{i}] = Build2DVector(f,nx(i),ny(i),ax,bx,ay,by);
+end
+
+%% Call FMG:
+
+level = 1; %we start from level 1, the finest level
+
+pv = FullMultiGrid(pA,pv,pf,nx,ncycles,nu1,nu2,w,level);
+
