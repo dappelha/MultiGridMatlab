@@ -6,4 +6,4 @@ Start with 1DMultigridTutorial for best understanding.
 
 Feel free to use and modify for class assignments.
 
-
+![alt tag](VcycleMedres.png)
