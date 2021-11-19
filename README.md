@@ -6,6 +6,6 @@ Start with the ![1D Multigrid Tutorial](1DMultigridTutorial/) to understand how 
 
 Writting or enhancing a code like ![2D Multigrid](2DMultigrid/.) would make a great class project. Perhaps extend 2D to 3D for a short assignment, write in another language, or add some advection for more difficulty.
 
-This short ![PDF](images/NutshellMultigrid2.pdf) explains the math behind the code.
+This short ![PDF](NutshellMultigrid2.pdf) explains the math behind the code.
 
 ![alt tag](images/VcycleMedres.png)
